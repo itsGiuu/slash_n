@@ -1,2 +1,6 @@
-#Cronograma inicial disponível em
-	https://docs.google.com/spreadsheets/d/1_1EpBgLtBrxuuSQlTpin700-wbdu7c7MLrrCPxTnjRo/edit?usp=sharing
+# Diagramas e árvores feitas no draw.io
+# Cronograma feito online no smartsheet.com
+
+
+	#Cronograma inicial disponível em
+		https://docs.google.com/spreadsheets/d/1_1EpBgLtBrxuuSQlTpin700-wbdu7c7MLrrCPxTnjRo/edit?usp=sharing
