@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\rober\Documents\build-androidTeste5-Android_for_x86_GCC_4_9_Qt_5_8_0-Debug\android-build\libs\QtAndroid-bundled.jar"
+        jumboMode="false"
+        revision="25.0.3"
+        sha1="2603642404957fcbf248eb5f9031192a8117deec">
+        <dex dex="C:\Users\rober\Documents\build-androidTeste5-Android_for_x86_GCC_4_9_Qt_5_8_0-Debug\android-build\build\intermediates\pre-dexed\debug\QtAndroid-bundled-d7ecbc25bdb505da9206ff1e3da62e304bc327bf.jar" />
+    </item>
+
+</items>
