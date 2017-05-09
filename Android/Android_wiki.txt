@@ -1,0 +1,17 @@
+# Como instalar o Qt para android: https://wiki.qt.io/Android
+
+
+
+### Dicas
+
+	# Ao instalar o android studio, mudar a pasta sdk/tools para uma outra versão (parece que a vesão mais atual não é tão completa)
+		http://stackoverflow.com/questions/42668185/could-not-find-gradle-wrapper-within-android-sdk-might-need-to-update-your-andr
+
+	# Ao instalar o NDE,  utilizar uma versão mais antiga (android-ndk-r10e)
+
+	# JDK 1.8.0_131 funcionou
+
+	# Apache-ant-1.9.9 funcionou
+
+	#Colocar nas variáveis de ambiente a entrada: _JAVA_OPTIONS   com valor   -Xmx512M
+			(recomendo ver se realmente é necessário, mas parou alguns erros na minha instalação)
