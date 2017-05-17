@@ -4,14 +4,29 @@
 
 ### Dicas
 
-	# Ao instalar o android studio, mudar a pasta sdk/tools para uma outra vers„o (parece que a ves„o mais atual n„o È t„o completa)
+	# Ao instalar o android studio, mudar a pasta sdk/tools para uma outra vers√£o (parece que a ves√£o mais atual n√£o √© t√£o completa)
 		http://stackoverflow.com/questions/42668185/could-not-find-gradle-wrapper-within-android-sdk-might-need-to-update-your-andr
 
-	# Ao instalar o NDE,  utilizar uma vers„o mais antiga (android-ndk-r10e)
+	# Ao instalar o NDE,  utilizar uma vers√£o mais antiga (android-ndk-r10e)
 
 	# JDK 1.8.0_131 funcionou
 
 	# Apache-ant-1.9.9 funcionou
 
-	#Colocar nas vari·veis de ambiente a entrada: _JAVA_OPTIONS   com valor   -Xmx512M
-			(recomendo ver se realmente È necess·rio, mas parou alguns erros na minha instalaÁ„o)
+	#Colocar nas vari√°veis de ambiente a entrada: _JAVA_OPTIONS   com valor   -Xmx512M
+			(recomendo ver se realmente √© necess√°rio, mas parou alguns erros na minha instala√ß√£o)
+
+	
+	
+	
+	
+	
+	
+	#Erro: Application binary is not in output directory: Please run 'mingw32-make install INSTALL_ROOT=C:/........
+	Se isso foi causado por process_begin: CreateProcess(NULL, cp -f libandroidTeste5.so C:/......., 
+	pode ter acontecido um erro na hora de copiar um arquivo depois de executar o mingw32-make.exe
+	
+		Solu√ß√£o: 
+			-Copiar o arquivo que n√£o foi copiado (neste caso libPROJETO.so para a pasta libs/x86) 
+			-Executar o comando manualmente.
+		"C:\Qt\5.7\android_x86\bin\androiddeployqt.exe" --input C:/Users/rober/Documents/build-androidTeste5-Android_for_x86_GCC_4_9_Qt_5_7_1-Debug/android-libandroidTeste5.so-deployment-settings.json --output C:/Users/rober/Documents/build-androidTeste5-Android_for_x86_GCC_4_9_Qt_5_7_1-Debug/android-build --deployment bundled --android-platform android-25 --jdk "C:/Program Files/Java/jdk1.8.0_131" --ant "C:/Program Files/Java/apache-ant-1.9.9/bin/ant.bat"
