@@ -1,0 +1,28 @@
+
+Arvore binaria automaticamente balanceada
+Exemplo funcionando
+
+
+Contem:
+	-Classe dos "nodos" dos alunos (com matricula e creditos atuais)
+		-setCredito
+		-getCredito
+		-ID, matricula, etc
+	-Classe da árvore
+		-Include novo nodo
+		-Encontra nodo
+		-Imprime arvore
+		-etc
+		
+		
+		
+
+Talvez falte:
+	-Remover nodo da árvore
+	-Mudar a separação entre métodos/atributos do tipo privado/publico
+	
+	
+	
+Essa árvore é basicamente uma adaptação de um dos exercícios feitos em aula, mudando a forma de incersão e adicionado 
+		um método auxiliar pra "rotação" da árvore 
+O método de funcionamento da árvore e o código basico (originalmente feito em C) foi retirado de http://www.geeksforgeeks.org/avl-tree-set-1-insertion/

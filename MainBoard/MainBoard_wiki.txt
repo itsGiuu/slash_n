@@ -1,0 +1,5 @@
+ESP8266 - Node MCU v3
+	-Main board a ser utilizada no lugar da placa Atlys Leon 3 
+	-A ser programada em C++
+	-Vamos tentar usar bibliotecas de acesso WiFi / Serial em C++ também, caso não possível 
+		tentares usar algo em arduino/etc. o mínimo possível
