@@ -1,10 +1,10 @@
 import socket
+import time
 
-
-TCP_IP = '192.168.137.184'
-TCP_PORT = 8023
+TCP_IP = 'localhost'
+TCP_PORT = 7009
 BUFFER_SIZE = 1024
-MESSAGE = "close".encode('utf-8')
+MESSAGE = "Teste python TCP client".encode('utf-8')
 
 while True:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -13,3 +13,4 @@ while True:
     data = s.recv(BUFFER_SIZE)
     s.close()
     print("received data:", data)
+    time.sleep(2)
