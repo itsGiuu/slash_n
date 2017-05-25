@@ -1,0 +1,2 @@
+Servidor a ser feito usando um banco de dados SQL, controlado por um programa em C++
+A conexão entre servidor e módulo local (ESP8266) poderá ser feito em TCP socket

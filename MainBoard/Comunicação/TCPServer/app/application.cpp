@@ -13,11 +13,9 @@ IPAddress serverIP;
 uint16_t serverPort;
 TcpClient* global_client  = new TcpClient(false);
 
-void writeToPCServer(){
+void handleServerMessage(){
 	//global_client.sendString( "Teste global client 1",false);
 	global_client->sendString("Response to server 2 \r\n", false);
-
-
 }
 
 
@@ -40,7 +38,7 @@ bool tcpServerClientReceive (TcpClient& client, char *data, int size)
 		global_client = &client;
 		Serial.print("---Received data from server\n"); Serial.print("---Responding.....\n");
 		client.sendString("Response to server \r\n", false);
-		writeToPCServer();
+		handleServerMessage();
 	}
 	else{
 		client.sendString("Response to client \r\n", false);
@@ -73,7 +71,6 @@ void startServers()
 
 
 
-// Will be called when WiFi station was connected to AP
 void connectOk()
 {
 	Serial.print("CONNECTED \n");
@@ -97,8 +94,7 @@ void init()
 	WifiStation.enable(true);
 	WifiStation.config(WIFI_SSID, WIFI_PWD);
 	WifiAccessPoint.enable(false);
-
-	// Run our method when station was connected to AP
+	WifiStation.setIP(IPAddress(192,168,100,10));
 	WifiStation.waitConnection(connectOk, 30, connectFail);
 	/*Debug.setDebug(Serial);
 	Debug.initCommand();

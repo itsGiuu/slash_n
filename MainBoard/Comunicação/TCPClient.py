@@ -1,7 +1,7 @@
 import socket
 import time
 
-TCP_IP = '192.168.100.13'
+TCP_IP = '192.168.100.2'
 TCP_PORT = 8023
 BUFFER_SIZE = 1024
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
