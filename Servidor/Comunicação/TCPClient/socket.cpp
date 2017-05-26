@@ -3,6 +3,14 @@
 socket::socket(QObject *parent) :
     QObject(parent)
 {
+    qtsocket = new QTcpSocket(this);
+    connect(qtsocket, SIGNAL(connected()),this, SLOT(connected()));
+    connect(qtsocket, SIGNAL(disconnected()),this, SLOT(disconnected()));
+    connect(qtsocket, SIGNAL(bytesWritten(qint64)),this, SLOT(bytesWritten(qint64)));
+    connect(qtsocket, SIGNAL(readyRead()),this, SLOT(readyRead()));
+    isconnected = false;
+    IPAddress = QString("-1");
+    port = -1;
 }
 
 void socket::setIP(QString IP){
@@ -13,22 +21,27 @@ void socket::setPort(int p){
     port = p;
 }
 
-void socket::doConnect()
+void socket::start_connection()
 {
-    qtsocket = new QTcpSocket(this);
-    connect(qtsocket, SIGNAL(connected()),this, SLOT(connected()));
-    connect(qtsocket, SIGNAL(disconnected()),this, SLOT(disconnected()));
-    connect(qtsocket, SIGNAL(bytesWritten(qint64)),this, SLOT(bytesWritten(qint64)));
-    connect(qtsocket, SIGNAL(readyRead()),this, SLOT(readyRead()));
 
-    qDebug() << "connecting...";
-
-    qtsocket->connectToHost(IPAddress, port);
-    if(!qtsocket->waitForConnected(10000))
-    {
-        qDebug() << "Error: " << qtsocket->errorString();
-
+    if( (IPAddress == QString("-1")) || (port == -1)){
+        qDebug() << "IPAddress ou Port não foram configurados!";
     }
+    else{
+        qDebug() << "Tentando estabelecer conexão...";
+
+        qtsocket->connectToHost(IPAddress, port);
+        if(!qtsocket->waitForConnected(10000))
+        {
+            qDebug() << "Error: " << qtsocket->errorString();
+            isconnected = false;
+
+        }
+        else{
+            isconnected = true;
+        }
+    }
+
 }
 
 void socket::disconnect(){
@@ -38,35 +51,48 @@ void socket::disconnect(){
 
 
 void socket::writeMessage(char *data){
-    qtsocket->write(data);
+    if(isconnected == true){
+        qtsocket->write(data);
+    }
+    else{
+        qDebug() << "Error: não é possivel enviar dados antes de se conectar";
+    }
 }
 
 void socket::writeMessage(string data){
-    //Não sei se essa conversão de string -> char array precisa
-    //de alocação de memória
-    char *data_char = &data[0u];
-    qtsocket->write(data_char);
+    //Não sei se essa conversão de string -> char array precisa de alocação de memória
+    if(isconnected == true){
+        char *data_char = &data[0u];
+        qtsocket->write(data_char);
+    }
+    else{
+        qDebug() << "Error: não é possivel enviar dados antes de se conectar";
+    }
+}
+
+QByteArray socket::readMessage(){
+    return qtsocket->readAll();
 }
 
 void socket::connected()
 {
-    qDebug() << "connected...";
+    qDebug() << "On connected slot...";
 
 
 }
 
 void socket::disconnected()
 {
-    qDebug() << "disconnected...";
+    qDebug() << "On disconnected slot...";
 }
 
 void socket::bytesWritten(qint64 bytes)
 {
-    qDebug() << bytes << " bytes written...";
+    qDebug() << "On bytes_written slot... bytes written:" << bytes;
 }
 
 void socket::readyRead()
 {
-    qDebug() << "reading...";
-    qDebug() << qtsocket->readAll();
+    qDebug() << "On ready_read slot...";
+    emit SIGNAL_socket_received_data();
 }

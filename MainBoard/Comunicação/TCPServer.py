@@ -13,12 +13,12 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         # self.request is the TCP socket connected to the client
         self.data = self.request.recv(1024).strip()
         print("{} wrote:".format(self.client_address[0]))
-        print(self.data)
+        print(self.data.decode('utf-8'))
         # just send back the same data, but upper-cased
-        #self.request.sendall(self.data.upper())
+        self.request.sendall(self.data.upper())
 
 if __name__ == "__main__":
-    HOST, PORT = "192.168.100.12", 7009
+    HOST, PORT = "192.168.100.13", 7009
 
     # Create the server, binding to localhost on port 9999
     server = socketserver.TCPServer((HOST, PORT), MyTCPHandler)

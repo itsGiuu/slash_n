@@ -4,6 +4,7 @@
 
 
 #include <QObject>
+#include <QtNetwork>
 #include <QTcpSocket>
 #include <QAbstractSocket>
 #include <QDebug>
@@ -18,14 +19,16 @@ class socket : public QObject
 public:
     explicit socket(QObject *parent = 0);
 
-    void doConnect();
+    void start_connection();
     void disconnect();
     void writeMessage(char *data);
     void writeMessage(string data);
+    QByteArray readMessage();
     void setIP(QString IP);
     void setPort(int p);
 
 signals:
+    void SIGNAL_socket_received_data();
 
 public slots:
     void connected();
@@ -36,6 +39,7 @@ public slots:
 
 private:
     QTcpSocket *qtsocket;
+    bool isconnected;
     QString IPAddress;
     int port;
 

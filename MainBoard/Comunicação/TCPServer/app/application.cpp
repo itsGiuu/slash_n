@@ -94,7 +94,7 @@ void init()
 	WifiStation.enable(true);
 	WifiStation.config(WIFI_SSID, WIFI_PWD);
 	WifiAccessPoint.enable(false);
-	WifiStation.setIP(IPAddress(192,168,100,10));
+	//WifiStation.setIP(IPAddress(192,168,100,10));
 	WifiStation.waitConnection(connectOk, 30, connectFail);
 	/*Debug.setDebug(Serial);
 	Debug.initCommand();
