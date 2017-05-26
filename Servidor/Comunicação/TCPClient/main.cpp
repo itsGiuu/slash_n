@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
     string data_string = "Teste string\n";
     server_obj.server_send(data_string);
 
+    char *data_array = "Teste array\n";
+    server_obj.server_send(data_array);
 
     return a.exec();
 }

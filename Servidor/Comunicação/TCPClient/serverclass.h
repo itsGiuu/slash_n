@@ -12,6 +12,7 @@ public:
     explicit serverClass(QObject *parent = 0);
     void configSocketConnection(QString IP, qint64 port);
     void server_send(string data);
+    void server_send(char *data);
 
     //Outras funções do servidor
     void configSQL();

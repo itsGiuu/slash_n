@@ -3,10 +3,16 @@
 serverClass::serverClass(QObject *parent) : QObject(parent)
 {
     //Este sistema de SIGNAL/SLOT do Qt cria algo parecido com um interrupt
-    //Quando o socket_obj recebe algum dado, ele envia um sinal "SIGNAL_socket_received_data"
+    //Quando o socket_obj recebe algum dado, ele gera um sinal "SIGNAL_socket_received_data"
     //Esse sinal é conectado ao slot "server_receive" desta classe
     //Sempre que o sinal for ativado, o slot vai ser chamado
     QObject::connect(&socket_obj,&socket::SIGNAL_socket_received_data,this,server_receive);
+    //connect(Objeto que cria o sinal,
+    //        Sinal enviado,
+    //        Objeto que recebe o sinal,
+    //        Slot que é chamado quando o sinal é recebido
+    //        );
+
 }
 
 
@@ -18,6 +24,10 @@ QByteArray serverClass::server_receive(){
 }
 
 void serverClass::server_send(string data){
+    socket_obj.writeMessage(data);
+}
+
+void serverClass::server_send(char *data){
     socket_obj.writeMessage(data);
 }
 
