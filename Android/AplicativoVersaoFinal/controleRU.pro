@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -28,13 +29,19 @@ SOURCES += main.cpp\
     secondwindow.cpp \
     cardinfo.cpp \
     addcredits.cpp \
-    extrainfo.cpp
+    extrainfo.cpp \
+    aluno.cpp \
+    clientjsoninterface.cpp \
+    sockettcpru.cpp
 
 HEADERS  += mainwindow.h \
     secondwindow.h \
     cardinfo.h \
     addcredits.h \
-    extrainfo.h
+    extrainfo.h \
+    aluno.h \
+    clientjsoninterface.h \
+    sockettcpru.h 
 
 FORMS    += mainwindow.ui \
     secondwindow.ui \
