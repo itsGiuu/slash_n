@@ -1,15 +1,14 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-05-23T18:27:52
+# Project created by QtCreator 2017-05-30T23:35:35
 #
 #-------------------------------------------------
 
-QT       += core gui
-QT += network
+QT       += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = controleRU
+TARGET = ClientRuServer
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,32 +25,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    secondwindow.cpp \
-    cardinfo.cpp \
-    addcredits.cpp \
-    extrainfo.cpp \
     aluno.cpp \
+    alunoserver.cpp \
     clientjsoninterface.cpp \
     sockettcpru.cpp
 
 HEADERS  += mainwindow.h \
-    secondwindow.h \
-    cardinfo.h \
-    addcredits.h \
-    extrainfo.h \
     aluno.h \
+    alunoserver.h \
     clientjsoninterface.h \
-    sockettcpru.h 
+    sockettcpru.h
 
-FORMS    += mainwindow.ui \
-    secondwindow.ui \
-    cardinfo.ui \
-    addcredits.ui \
-    extrainfo.ui
-
-CONFIG += mobility
-MOBILITY = 
-
-RESOURCES += \
-    fontes.qrc
-
+FORMS    += mainwindow.ui
