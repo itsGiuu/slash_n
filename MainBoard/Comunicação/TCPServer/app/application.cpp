@@ -1,5 +1,6 @@
 #include <user_config.h>
 #include <SmingCore/SmingCore.h>
+#include <C:\tools\sming\Sming\Services\ArduinoJson\include\ArduinoJson.h>
 #include <SmingCore/Network/TelnetServer.h>
 #include "Services/CommandProcessing/CommandProcessingIncludes.h"
 //#include <SmingCore/Debug.h>
