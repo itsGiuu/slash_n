@@ -15,6 +15,9 @@ AddCredits::~AddCredits()
 
 void AddCredits::on_pushButton_2_clicked()
 {
+    QString storeAux = ui->lineEdit->text();
+    bool ok;
+    amount.setAmount(storeAux.toFloat(&ok));
     hide();
 }
 

@@ -2,6 +2,9 @@
 #define CARDINFO_H
 
 #include <QDialog>
+#include <QLineEdit>
+#include <QString>
+#include "CardData.h"
 
 namespace Ui {
 class CardInfo;
@@ -15,6 +18,8 @@ public:
     explicit CardInfo(QWidget *parent = 0);
     ~CardInfo();
 
+    CardData getCard();
+    void setCard(CardData cardAux);
 private slots:
 
     void on_pushButton_2_clicked();
@@ -23,7 +28,7 @@ private slots:
 
 private:
     Ui::CardInfo *ui;
-
+    CardData cartao;
 };
 
 #endif // CARDINFO_H

@@ -6,27 +6,14 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
+    AlunoApp aluno;
+
+    aluno.setMatricula(14101336);
+    aluno.setSenha(1010);
+
+    w.getAluno(aluno);
+
     w.show();
 
     return a.exec();
-}
-
-void ControlSecondWindow(bool createSecondWindow, bool createCardInfo, bool destroyCardInfo)
-{
-    CardInfo *registerCard;
-    SecondWindow *loggedWindow;
-
-    if(createSecondWindow == true)
-    {
-        //loggedWindow =  new SecondWindow(this);
-        //loggedWindow -> showMaximized();
-    } else if(createCardInfo == true)
-    {
-        //registerCard = new CardInfo(this);
-        //registerCard -> show();
-    } else if(destroyCardInfo)
-    {
-        //registerCard -> close();
-        //delete registerCard;
-    }
 }

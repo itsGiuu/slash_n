@@ -46,3 +46,16 @@ void SecondWindow::on_toolButton_2_clicked()
         appInfo -> show();
     }
 }
+
+CardData SecondWindow::getCard()
+{
+    return cartao;
+}
+
+void SecondWindow::setCard(CardData cardAux)
+{
+    cartao.setCardNumber(cardAux.getCardNumber());
+    cartao.setMonthDeadline(cardAux.getMonthDeadline());
+    cartao.setYearDeadline(cardAux.getYearDeadline());
+    cartao.setSafeCard(cardAux.getSafeCard());
+}

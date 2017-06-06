@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QLineEdit>
+#include <QString>
+#include "alunoapp.h"
 #include "secondwindow.h"
 
 namespace Ui {
@@ -16,12 +19,21 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    AlunoApp aluno;
+
+    void getAluno(AlunoApp alunoAux);
+    void setSenhaDigitada(int senhaAux);
+    void setMatriculaDigitada(ulong matriculaAux);
+    bool checkLogin();
+
 private slots:
     void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
     SecondWindow *loggedWindow;
+    int senhaDigitada;
+    ulong matriculaDigitada;
 };
 
 #endif // MAINWINDOW_H

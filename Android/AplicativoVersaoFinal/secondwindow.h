@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "cardinfo.h"
+#include "carddata.h"
 #include "addcredits.h"
 #include "extrainfo.h"
 
@@ -18,6 +19,8 @@ public:
     explicit SecondWindow(QWidget *parent = 0);
     ~SecondWindow();
 
+    CardData getCard();
+    void setCard(CardData cardAux);
 protected:
     CardInfo *registerCard;
     AddCredits *addCreditsMobile;
@@ -36,6 +39,7 @@ private slots:
 
 private:
     Ui::SecondWindow *ui;
+    CardData cartao;
 };
 
 #endif // SECONDWINDOW_H

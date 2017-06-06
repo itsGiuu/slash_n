@@ -32,7 +32,10 @@ SOURCES += main.cpp\
     extrainfo.cpp \
     aluno.cpp \
     clientjsoninterface.cpp \
-    sockettcpru.cpp
+    sockettcpru.cpp \
+    alunoapp.cpp \
+    carddata.cpp \
+    creditstoadd.cpp
 
 HEADERS  += mainwindow.h \
     secondwindow.h \
@@ -41,7 +44,10 @@ HEADERS  += mainwindow.h \
     extrainfo.h \
     aluno.h \
     clientjsoninterface.h \
-    sockettcpru.h 
+    sockettcpru.h \ 
+    alunoapp.h \
+    carddata.h \
+    creditstoadd.h
 
 FORMS    += mainwindow.ui \
     secondwindow.ui \
