@@ -13,7 +13,10 @@ https://github.com/SmingHub/Sming
 
 
 https://github.com/SmingHub/Sming/issues/803
-Upload do firmware + code:
+Upload :
 	python C:\Anaconda3\Scripts\esptool.py -p COM4 -b 115200 write_flash -ff 40m -fm dio -fs 32m 0x00000 out/firmware/0x00000.bin 0x09000 out/firmware/0x09000.bin 0x48000 out/firmware/spiff_rom.bin
 Upload o code:	
 	python C:\Anaconda3\Scripts\esptool.py -p COM4 -b 115200 write_flash -ff 40m -fm dio -fs 32m 0x48000 out/firmware/spiff_rom.bin
+Upload sem o spiff
+	
+	python C:\Anaconda3\Scripts\esptool.py -p COM3 -b 115200 write_flash -ff 40m -fm dio -fs 32m 0x00000 out/firmware/0x00000.bin 0x09000 out/firmware/0x09000.bin

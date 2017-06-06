@@ -1,7 +1,9 @@
 #include <user_config.h>
 #include <SmingCore/SmingCore.h>
-#include <SmingCore/Network/TelnetServer.h>
-#include "Services/CommandProcessing/CommandProcessingIncludes.h"
+#include <SmingCore/Debug.h>
+
+#include "JsonHandler.cpp"
+
 //#include <SmingCore/Debug.h>
 
 #ifndef WIFI_SSID
@@ -11,12 +13,10 @@
 
 IPAddress serverIP;
 uint16_t serverPort;
-TcpClient* global_client  = new TcpClient(false);
+JsonHandler* wifiHandler;
 
-void handleServerMessage(){
-	//global_client.sendString( "Teste global client 1",false);
-	global_client->sendString("Response to server 2 \r\n", false);
-}
+
+
 
 
 void tcpServerClientConnected (TcpClient* client)
@@ -32,19 +32,14 @@ bool tcpServerClientReceive (TcpClient& client, char *data, int size)
 	Serial.print(" data :");
 	Serial.print(data); Serial.print("\n");
 
-	if (strcmp(data,"server") == 0)	{
-		serverIP = client.getRemoteIp();
-		serverPort = client.getRemotePort();
-		global_client = &client;
-		Serial.print("---Received data from server\n"); Serial.print("---Responding.....\n");
-		client.sendString("Response to server \r\n", false);
-		handleServerMessage();
-	}
-	else{
-		client.sendString("Response to client \r\n", false);
-		//client.writeString("Write from esp \r\n",0 );
-	}
+	wifiHandler->handleData(data);
+
+
+
+
 	return true;
+
+
 }
 
 
@@ -59,14 +54,10 @@ TcpServer tcpServer(tcpServerClientConnected, tcpServerClientReceive, tcpServerC
 
 void startServers()
 {
-	tcpServer.listen(8023);
-
-	Serial.println("\r\n=== TCP SERVER Port 8023 STARTED ===");
+	tcpServer.listen(8025);
+	Serial.println("\r\n=== TCP SERVER Port 8025 STARTED ===");
 	Serial.println(WifiStation.getIP());
 	Serial.println("==============================\r\n");
-
-
-
 }
 
 
@@ -87,19 +78,21 @@ void connectFail()
 
 void init()
 {
+	delayMilliseconds(2000);
 	Serial.begin(SERIAL_BAUD_RATE); // 115200 by default
-	Serial.systemDebugOutput(false); //
+	Serial.systemDebugOutput(true); //
 	system_set_os_print(0);
-	//Serial.commandProcessing(true);
+	Serial.commandProcessing(true);
+	Debug.setDebug(Serial);
+	Debug.initCommand();
+	Debug.start();
 	WifiStation.enable(true);
 	WifiStation.config(WIFI_SSID, WIFI_PWD);
 	WifiAccessPoint.enable(false);
 	//WifiStation.setIP(IPAddress(192,168,100,10));
 	WifiStation.waitConnection(connectOk, 30, connectFail);
-	/*Debug.setDebug(Serial);
-	Debug.initCommand();
-	Debug.start();
-	Debug.printf("This is the debug output\r\n");
-	 */
+	wifiHandler = new JsonHandler;
 
 }
+
+

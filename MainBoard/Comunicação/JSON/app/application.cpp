@@ -19,6 +19,7 @@ void handleServerMessage(){
 }
 
 
+
 void tcpServerClientConnected (TcpClient* client)
 {
 	Serial.print("Application ClientConnected (onClientCallback)\n ");

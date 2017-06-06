@@ -1,4 +1,3 @@
-#include <iostream>
 #include "ABB.h"
 
 using namespace std;
@@ -16,8 +15,10 @@ ABB::~ABB(){
 
 
 AlunoNode* ABB::auxInserirNodo(AlunoNode* node, int matricula, int credito){
-
-    if(matricula < node->ID){
+	if(matricula == node->ID){
+		node->setCredito(credito);
+	}
+	else if(matricula < node->ID){
         if(node->esquerda == 0){
             AlunoNode* ptr = new AlunoNode(matricula,credito);
             node->esquerda = ptr;
@@ -36,8 +37,7 @@ AlunoNode* ABB::auxInserirNodo(AlunoNode* node, int matricula, int credito){
             node->direita = auxInserirNodo(node->direita, matricula, credito);
         }
     }
-    else // Equal matriculas are not allowed in BST
-        return node;
+
 
     /* 2. Update height of this ancestor node */
 
@@ -86,7 +86,8 @@ void ABB::inserirNodo (int matricula, int credito){
     else{
         raiz = auxInserirNodo(raiz,matricula, credito);
     }
-    cout << "Inserido node:" << matricula << endl;
+    Serial.print("Inserido node: ");
+    Serial.println(matricula);
 
 
 
@@ -129,7 +130,11 @@ AlunoNode* ABB::findNodo(int matricula){
 
 
 void ABB::auxImprimir(AlunoNode* nodo){
-        cout << nodo->ID << endl ;
+        Serial.print("Matricula/Credito: ");
+        Serial.print(nodo->ID);
+        Serial.print(" / ");
+        Serial.println(nodo->getCredito());
+
         if(nodo->direita != 0){
             auxImprimir(nodo->direita);
         }
@@ -144,7 +149,7 @@ void ABB::imprimirABB(){
         auxImprimir(raiz);
     }
     else{
-        cout << "Arvore Vazia" << endl;
+        Serial.println("Arvore Vazia");
     }
 }
 
@@ -198,14 +203,9 @@ int ABB::getBalance(AlunoNode *N)
 }
 
 
-int ABB::getHeight(AlunoNode *node){
-    if(node == 0){
-        return 0;
-    }
-    else{
-        return node->height;
-    }
-}
+
+
+
 
 
 int ABB::max(AlunoNode* node)
@@ -215,4 +215,14 @@ int ABB::max(AlunoNode* node)
     b = node->esquerda == 0? 0: getHeight(node->esquerda);
     max = a>b? a:b;
     return max;
+}
+
+
+int ABB::getHeight(AlunoNode *node){
+    if(node == 0){
+        return 0;
+    }
+    else{
+        return node->height;
+    }
 }
