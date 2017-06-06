@@ -1,7 +1,7 @@
 import socket
-import threading
+import threading, time
 
-bind_ip = '192.168.100.13'
+bind_ip = '192.168.100.6'
 bind_port = 7009
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -18,6 +18,7 @@ def handle_client_connection(client_socket):
             client_socket.send('ACK!'.encode('utf-8'))
         except:
             client_socket.close()
+        time.sleep(1)
 
 while True:
     client_sock, address = server.accept()
