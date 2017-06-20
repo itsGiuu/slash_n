@@ -24,6 +24,8 @@ public:
     bool AddAluno(AlunoServer aluno, QString *Error);
     bool updateAluno(AlunoServer aluno, QString *Error);
     bool delAluno(ulong matricula, QString *Error);
+    bool addCreditCard(int matricula, float saldo, float amount, QString *Error); //returns true if credits were added
+    bool addCreditMobile(int matricula, float saldo, float amount, QString *Error); //returns true if credits were added
 
 signals:
 
