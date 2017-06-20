@@ -104,7 +104,7 @@ QJsonDocument DbJsonInterface::addCreditCard(int matricula, float amount)
     {
         aluno.setcreditsCard(getcreditsCard()+float(jsonObj.value("Amount").toDouble()));
         jsonHeader = QJsonObject{
-                    {"ThereIs", "Feedback"},
+                    {"ThereIs", "SaldoCard"},
                     {"youTry", "changeCard"},
                     {"Acknowledge", "noError"},
                 };
@@ -141,7 +141,7 @@ QJsonDocument DbJsonInterface::addCreditMobile(int matricula, float amount)
     {
         aluno.setcreditsCard(getcreditsCard()+float(jsonObj.value("Amount").toDouble()));
         jsonHeader = QJsonObject{
-                    {"ThereIs", "Feedback"},
+                    {"ThereIs", "SaldoMobile"},
                     {"youTry", "changeMobile"},
                     {"Acknowledge", "noError"},
                 };
