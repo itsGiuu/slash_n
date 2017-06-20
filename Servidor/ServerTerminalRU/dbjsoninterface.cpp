@@ -65,6 +65,14 @@ QByteArray DbJsonInterface::Handler(QByteArray inputData)
     {
         jsonDoc = delAluno(jsonObj.value("Matricula").toInt());
         JsonOut = jsonDoc.toJson();
+    } else if (request == "changeCard")
+    {
+        jsonDoc = addCreditCard(jsonObj.value("Matricula").toInt(), float(jsonObj.value("Amount").toDouble()));
+            //search aluno, get card credits, add amount, return bool for success?
+    } else if (request == "changeMobile")
+    {
+        jsonDoc = addCreditMobile(jsonObj.value("Matricula").toInt(), float(jsonObj.value("Amount").toDouble()));
+            //search aluno, get card credits, add amount, return bool for success?
     } else
     {
         out << "Erro na leitura do cabecalho do JSON" << endl;
