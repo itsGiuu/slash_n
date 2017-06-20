@@ -17,6 +17,8 @@ class DbJsonInterface
     QJsonDocument addAluno(AlunoServer aluno);
     QJsonDocument updateAluno(AlunoServer aluno);
     QJsonDocument delAluno(int matricula);
+    QJsonDocument addCreditCard(int matricula, float amount);
+    QJsonDocument addCreditMobile(int matricula, float amount);
 
 public:
     DbJsonInterface();
