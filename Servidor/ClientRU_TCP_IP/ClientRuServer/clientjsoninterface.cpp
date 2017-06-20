@@ -42,6 +42,20 @@ void ClientJsonInterface::JsonRecAluno(QJsonArray *JsonArray, QJsonObject JsonRe
 
 }
 
+void ClientJsonInterface::JsonSaldoCard(QJsonArray *JsonArray, QJsonObject JsonRequest)
+{
+	QJsonObject jsonObj;
+
+	aluno.setCreditsCard(float(jsonObj.value("creditsCard").toDouble()));
+}
+
+void ClientJsonInterface::JsonSaldoMobile(QJsonArray *JsonArray, QJsonObject JsonRequest)
+{
+	QJsonObject jsonObj;
+
+	aluno.setCreditsCard(float(jsonObj.value("creditsMobile").toDouble()));
+}
+
 void ClientJsonInterface::JsonFeedbackHandler(QJsonObject JsonFb)
 {
     if (JsonFb.value("Acknowledge").toString() == "noError")
@@ -93,6 +107,12 @@ void ClientJsonInterface::JsonReceiver(QByteArray data)
     } else if (receive == "Feedback")
     {
         this->JsonFeedbackHandler(jsonObj);
+    } else if (receive == "SaldoMobile")
+    {
+        this->JsonSaldoMobile(&jsonArray, jsonObj);
+    } else if (receive == "SaldoCard")
+    {
+    	this->JsonSaldoCard(&jsonArray, jsonObj);
     }
     else
     {
