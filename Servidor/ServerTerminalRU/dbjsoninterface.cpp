@@ -67,76 +67,12 @@ QByteArray DbJsonInterface::Handler(QByteArray inputData)
         JsonOut = jsonDoc.toJson();
     } else if (request == "changeCard")
     {
-        AlunoServer aluno;
-        QString ErrorText;
-        bool Error;
-
-        aluno = dbManager.SearchAluno(ulong(matricula), &ErrorText, Error);
-
-        if (Error)
-        {
-
-            jsonHeader = QJsonObject{
-                        {"ThereIs", "Feedback"},
-                        {"youTry", "rAluno"},
-                        {"Acknowledge", "Error"},
-                        {"ErrorText", ErrorText},
-                    };
-
-            jsonArray = QJsonArray{jsonHeader};
-        } else 
-        {
-         aluno.setcreditsCard(getcreditsCard()+float(jsonObj.value("Amount").toDouble()));
-         jsonHeader = QJsonObject{
-                        {"ThereIs", "Feedback"},
-                        {"youTry", "changeCard"},
-                        {"Acknowledge", "noError"},
-                    };
-        }
-        
-        jsonAluno = QJsonObject{
-                        {"Matricula", int(aluno.getMatricula())},
-                        {"creditsCard", aluno.getcreditsCard()},
-                    };
-        
-        jsonArray = QJsonArray{jsonHeader, jsonAluno};
-        jsonDoc = QJsonDocument{jsonArray};
+        jsonDoc = addCreditCard(jsonObj.value("Matricula").toInt(), float(jsonObj.value("Amount").toDouble()));
         JsonOut = jsonDoc.toJson();
     } else if (request == "changeMobile")
     {
-        AlunoServer aluno;
-        QString ErrorText;
-        bool Error;
-
-        aluno = dbManager.SearchAluno(ulong(matricula), &ErrorText, Error);
-        if (Error)
-        {
-
-            jsonHeader = QJsonObject{
-                        {"ThereIs", "Feedback"},
-                        {"youTry", "rAluno"},
-                        {"Acknowledge", "Error"},
-                        {"ErrorText", ErrorText},
-                    };
-
-            jsonArray = QJsonArray{jsonHeader};
-        } else 
-        {
-         aluno.setcreditsCard(getcreditsCard()+float(jsonObj.value("Amount").toDouble()));
-         jsonHeader = QJsonObject{
-                        {"ThereIs", "Feedback"},
-                        {"youTry", "changeMobile"},
-                        {"Acknowledge", "noError"},
-                    };
-        }
         
-        jsonAluno = QJsonObject{
-                        {"Matricula", int(aluno.getMatricula())},
-                        {"creditsMobile", aluno.getcreditsMobile()},
-                    };
-        
-        jsonArray = QJsonArray{jsonHeader, jsonAluno};
-        jsonDoc = QJsonDocument{jsonArray};
+        jsonDoc = addCreditMobile(jsonObj.value("Matricula").toInt(), float(jsonObj.value("Amount").toDouble()));
         JsonOut = jsonDoc.toJson();
     } else
     {
@@ -144,6 +80,80 @@ QByteArray DbJsonInterface::Handler(QByteArray inputData)
     }
 
     return JsonOut;
+}
+
+QJsonDocument DbJsonInterface::addCreditCard(int matricula, float amount)
+{
+    AlunoServer aluno;
+    QString ErrorText;
+    bool Error;
+
+    aluno = dbManager.SearchAluno(ulong(matricula), &ErrorText, Error);
+
+    if (Error)
+    {
+        jsonHeader = QJsonObject{
+                    {"ThereIs", "Feedback"},
+                    {"youTry", "changeCard"},
+                    {"Acknowledge", "Error"},
+                    {"ErrorText", ErrorText},
+                };
+
+        jsonArray = QJsonArray{jsonHeader};
+    } else 
+    {
+        aluno.setcreditsCard(getcreditsCard()+float(jsonObj.value("Amount").toDouble()));
+        jsonHeader = QJsonObject{
+                    {"ThereIs", "Feedback"},
+                    {"youTry", "changeCard"},
+                    {"Acknowledge", "noError"},
+                };
+    }
+        
+    jsonAluno = QJsonObject{
+                    {"Matricula", int(aluno.getMatricula())},
+                    {"creditsCard", aluno.getcreditsCard()},
+                };
+        
+    jsonArray = QJsonArray{jsonHeader, jsonAluno};
+    jsonDoc = QJsonDocument{jsonArray};
+}
+
+QJsonDocument DbJsonInterface::addCreditMobile(int matricula, float amount)
+{
+    AlunoServer aluno;
+    QString ErrorText;
+    bool Error;
+
+    aluno = dbManager.SearchAluno(ulong(matricula), &ErrorText, Error);
+
+    if (Error)
+    {
+        jsonHeader = QJsonObject{
+                    {"ThereIs", "Feedback"},
+                    {"youTry", "changeMobile"},
+                    {"Acknowledge", "Error"},
+                    {"ErrorText", ErrorText},
+                };
+
+        jsonArray = QJsonArray{jsonHeader};
+    } else 
+    {
+        aluno.setcreditsCard(getcreditsCard()+float(jsonObj.value("Amount").toDouble()));
+        jsonHeader = QJsonObject{
+                    {"ThereIs", "Feedback"},
+                    {"youTry", "changeMobile"},
+                    {"Acknowledge", "noError"},
+                };
+    }
+        
+    jsonAluno = QJsonObject{
+                    {"Matricula", int(aluno.getMatricula())},
+                    {"creditsMobile", aluno.getcreditsMobile()},
+                };
+        
+    jsonArray = QJsonArray{jsonHeader, jsonAluno};
+    jsonDoc = QJsonDocument{jsonArray};
 }
 
 QJsonDocument DbJsonInterface::requestAluno(int matricula)
