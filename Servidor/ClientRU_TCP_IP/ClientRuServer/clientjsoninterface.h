@@ -18,6 +18,8 @@ class ClientJsonInterface
     QString ErrorText;
 
     void JsonRecAluno(QJsonArray *JsonArray, QJsonObject JsonRequest);
+    void JsonSaldoMobile(QJsonArray *JsonArray, QJsonObject JsonRequest);
+    void JsonSaldoCard(QJsonArray *JsonArray, QJsonObject JsonRequest);
     void JsonFeedbackHandler(QJsonObject JsonFb);
 
 public:
