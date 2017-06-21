@@ -5,12 +5,12 @@
 
 class AlunoApp : public Aluno
 {
-    int Senha;
+    QString Senha;
 public:
     AlunoApp();
 
-    void setSenha(int senhaAux);
-    int getSenha();
+    void setSenha(QString senhaAux);
+    QString getSenha();
 };
 
 #endif // ALUNOAPP_H

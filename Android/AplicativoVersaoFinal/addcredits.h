@@ -1,10 +1,12 @@
 #ifndef ADDCREDITS_H
 #define ADDCREDITS_H
 
-#include "creditstoadd.h"
 #include <QDialog>
 #include <QLineEdit>
 #include <QString>
+#include "sockettcpru.h"
+#include "alunoapp.h"
+#include "carddata.h"
 
 namespace Ui {
 class AddCredits;
@@ -17,14 +19,28 @@ class AddCredits : public QDialog
 public:
     explicit AddCredits(QWidget *parent = 0);
     ~AddCredits();
-    CreditsToAdd amount;
+    void setAmount(float amountAux);
+    void setIsCard(bool aux);
+    void setCartao (CardData aux);
+
+    float getAmount(void);
+    CardData getCartao(void);
+    bool getIsCard(void);
+
+    AlunoApp aluno;
+    SocketTcpRU socket;
 
 private slots:
-    void on_pushButton_2_clicked();
+    void on_okButton_clicked();
 
-    void on_pushButton_clicked();
+    void on_cancelButton_clicked();
+
+    void on_lineAmount_returnPressed();
 
 private:
+    CardData cartao;
+    bool isCard;
+    float amount;
     Ui::AddCredits *ui;
 
 };

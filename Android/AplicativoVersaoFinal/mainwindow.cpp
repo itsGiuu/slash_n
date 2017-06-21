@@ -21,11 +21,33 @@ void MainWindow::on_pushButton_clicked()
     this->setMatriculaDigitada(storeAux.toULong(&okAux1, 10));
 
     storeAux = ui->lineEdit_2->text();
-    this->setSenhaDigitada(storeAux.toInt(&okAux2, 10));
+    this->setSenhaDigitada(storeAux);
+
+    QString errorSearch;
+    bool errorAux;
+    //UNCOMMENT
+    //AlunoApp alunoAux = socket.SearchAluno(int(this->getMatriculaDigitada()), &errorSearch, errorAux);
+
+    if (/*UNCOMMENT errorAux == false*/1)
+    {
+        //COMMENT
+        AlunoApp alunoAux;
+        alunoAux.setMatricula(14101336);
+        alunoAux.setCreditsCard(10.55);
+        alunoAux.setSenha("senha");
+        aluno = alunoAux;
+    } else {
+        QMessageBox::warning(0, qApp->tr("Aluno nao encontrado!"),
+                    QString("Tal coleguinha nao esta no banco de dados.\n\n\n"
+                             "DataBase responde: %1!.. " "\n\n\n"
+                             "Click Cancel to exit.").arg(errorSearch), QMessageBox::Cancel);
+    }
+
 
     if(this->checkLogin()){
         //Abrindo a nova janela
         loggedWindow =  new SecondWindow(this);
+        loggedWindow -> setAluno(aluno);
         loggedWindow -> showMaximized();
     }
 }
@@ -35,7 +57,7 @@ void MainWindow::getAluno(AlunoApp alunoAux)
     aluno = alunoAux;
 }
 
-void MainWindow::setSenhaDigitada(int senhaAux)
+void MainWindow::setSenhaDigitada(QString senhaAux)
 {
     senhaDigitada = senhaAux;
 }
@@ -45,11 +67,25 @@ void MainWindow::setMatriculaDigitada(ulong matriculaAux)
     matriculaDigitada = matriculaAux;
 }
 
+ulong MainWindow::getMatriculaDigitada()
+{
+    return matriculaDigitada;
+}
+
+QString MainWindow::getSenhaDigitada()
+{
+    return senhaDigitada;
+}
+
 bool MainWindow::checkLogin()
 {
-    bool returnAux;
+    bool returnAux, condSenha, condMatricula;
 
-    if (senhaDigitada == aluno.getSenha() && matriculaDigitada == aluno.getMatricula())
+
+    condSenha = (QString::compare(senhaDigitada, aluno.getSenha()) == 0);
+    condMatricula = (matriculaDigitada == aluno.getMatricula());
+
+    if ( condSenha && condMatricula )
         returnAux = true;
     else
         returnAux = false;

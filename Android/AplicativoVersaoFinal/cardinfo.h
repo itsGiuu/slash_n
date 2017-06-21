@@ -26,6 +26,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_lineCardNumber_returnPressed();
+
 private:
     Ui::CardInfo *ui;
     CardData cartao;

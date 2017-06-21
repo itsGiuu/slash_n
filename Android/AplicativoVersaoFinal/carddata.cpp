@@ -5,13 +5,15 @@ CardData::CardData()
     cardNumber[0] = ' ';
 }
 
-void CardData::setCardNumber(char *aux)
+void CardData::setCardNumber(const char *cardReceive)
 {
-    for(int i = 0; i < 16; i++){
+    strcpy(cardNumber, cardReceive);
+
+/*    for(int i = 0; i < 16; i++){
         cardNumber[i] = *aux;
         aux++;
     }
-}
+*/}
 
 void CardData::setMonthDeadline(short aux)
 {

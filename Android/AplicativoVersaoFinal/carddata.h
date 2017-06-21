@@ -1,6 +1,7 @@
 #ifndef CARDDATA_H
 #define CARDDATA_H
 
+#include <string.h>
 
 class CardData
 {
@@ -14,7 +15,7 @@ public:
     void setMonthDeadline(short int aux);
     void setYearDeadline(short int aux);
     void setSafeCard(short int aux);
-    void setCardNumber(char* aux);
+    void setCardNumber(const char* cardReceive);
     short int getMonthDeadline();
     short int getYearDeadline();
     short int getSafeCard();

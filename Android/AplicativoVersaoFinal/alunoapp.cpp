@@ -2,19 +2,15 @@
 
 AlunoApp::AlunoApp()
 {
-    Nome = "Empty";
-    Matricula = 10;
-    creditsCard = 0;
-    creditsMobile = 0;
-    Senha = 1010;
+    Senha = "";
 }
 
-void AlunoApp::setSenha(int senhaAux)
+void AlunoApp::setSenha(QString senhaAux)
 {
     Senha = senhaAux;
 }
 
-int AlunoApp::getSenha()
+QString AlunoApp::getSenha()
 {
     return Senha;
 }
