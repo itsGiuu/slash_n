@@ -1,0 +1,18 @@
+Comunicação TCP / socket baseado no exemplo disponível do Sming
+Existem outros modos de comunicação, estamos vendo o mais adequado
+
+Neste método a comunicação é simples, então falta implementar 
+	-o processamento dos dados/
+	-identificação de quem está mandando os dados/
+	-incorporar a comunicação com um banco de dados interno
+
+-Possível mandar dados
+	PC      -> ESP8266
+	ESP8266 -> PC
+	
+-A plca funciona com servidor -> define um IP e fica escutando um porta
+	-Diversos clients podem se comunicar ao mesmo tempo (testei com ~10 clients, a placa consegue acompanhar)
+
+-Precisa-se ver o funcionamento com o Qt / Smartphone
+-Precisa-se ver se os exemplos funcionam também no smartphone
+	
