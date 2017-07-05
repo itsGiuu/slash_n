@@ -85,7 +85,10 @@ void ClientJsonInterface::JsonReceiver(QByteArray data)
     {
         this->JsonRecAluno(&jsonArray, jsonObj);
     }
-    else
+    else if (receive == "ocupacaoRU")
+    {
+        occupants = jsonObj.value("ocupacao").toInt();
+    } else
     {
         out << "Erro na leitura do cabecalho do JSON" << endl;
     }
@@ -96,6 +99,11 @@ void ClientJsonInterface::JsonReceiver(QByteArray data)
 AlunoApp ClientJsonInterface::getAluno()
 {
     return aluno;
+}
+
+int ClientJsonInterface::getOccupants()
+{
+    return occupants;
 }
 
 void ClientJsonInterface::JsonRecAluno(QJsonArray *JsonArray, QJsonObject JsonRequest)

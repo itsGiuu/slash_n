@@ -26,15 +26,15 @@ void MainWindow::on_pushButton_clicked()
     QString errorSearch;
     bool errorAux;
     //UNCOMMENT
-    //AlunoApp alunoAux = socket.SearchAluno(int(this->getMatriculaDigitada()), &errorSearch, errorAux);
+    AlunoApp alunoAux = socket.SearchAluno(int(matriculaDigitada), &errorSearch, errorAux);
 
-    if (/*UNCOMMENT errorAux == false*/1)
+    if (errorAux == false)
     {
         //COMMENT
-        AlunoApp alunoAux;
-        alunoAux.setMatricula(14101336);
-        alunoAux.setCreditsCard(10.55);
-        alunoAux.setSenha("senha");
+        //AlunoApp alunoAux;
+        //alunoAux.setMatricula(14101336);
+        //alunoAux.setCreditsCard(10.55);
+        //alunoAux.setSenha("senha");
         aluno = alunoAux;
     } else {
         QMessageBox::warning(0, qApp->tr("Aluno nao encontrado!"),
@@ -48,6 +48,7 @@ void MainWindow::on_pushButton_clicked()
         //Abrindo a nova janela
         loggedWindow =  new SecondWindow(this);
         loggedWindow -> setAluno(aluno);
+        loggedWindow -> SecondConstructor();
         loggedWindow -> showMaximized();
     }
 }

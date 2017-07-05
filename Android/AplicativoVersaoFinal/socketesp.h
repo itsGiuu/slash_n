@@ -24,6 +24,7 @@ private:
 public:
     SocketESP();
     bool requestAccess(int matricula, int led, QString *Error, bool &ErrorOccurs);
+    int requestOccupants();
 };
 
 #endif // SOCKETESP_H

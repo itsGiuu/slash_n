@@ -1,7 +1,7 @@
 #include "addcredits.h"
 #include "ui_addcredits.h"
 
-AddCredits::AddCredits(QWidget *parent) :
+AddCredits::AddCredits(QWidget *parent, int matriculaAux) :
     QDialog(parent),
     ui(new Ui::AddCredits)
 {
@@ -18,8 +18,9 @@ AddCredits::AddCredits(QWidget *parent) :
     int T = qMax(fm.height(), 14);
     int h = T;
 
-    ui->lineAmount->setMinimumHeight(h);
+    //ui->lineAmount->setMinimumHeight(h);
     ui->lineWarning->clear();
+    matricula = matriculaAux;
 }
 
 AddCredits::~AddCredits()
@@ -69,14 +70,19 @@ void AddCredits::on_okButton_clicked()
         QString Error;
         if(getIsCard() == false)
         {
-            socket.addCreditMobile(int(aluno.getMatricula()), getAmount(), cartao, &Error);
+            socket.addCreditMobile(matricula, getAmount(), cartao, &Error);
         } else
         {
-            socket.addCreditCard(int(aluno.getMatricula()), getAmount(), cartao, &Error);
+            socket.addCreditCard(matricula, getAmount(), cartao, &Error);
         }
     } else {
         ui->lineWarning->setText("O valor deve ser como: 10.50, maior do que 0");
     }
+}
+
+void AddCredits::setMatricula(int aux)
+{
+    matricula = aux;
 }
 
 void AddCredits::on_cancelButton_clicked()

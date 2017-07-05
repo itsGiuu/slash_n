@@ -28,12 +28,14 @@ public:
     SocketTcpRU socket;
     SocketESP socketESP;
 
+    void SecondConstructor();
     void setCard(CardData cardAux);
     void setLedInput(int aux);
     void setAluno(AlunoApp aux);
 
     int getLedInput(void);
     AlunoApp getAluno(void);
+    Ui::SecondWindow *ui;
 
 protected:
     CardInfo *registerCard;
@@ -54,7 +56,6 @@ private slots:
     void on_pushButton_3_clicked();
 
 private:
-    Ui::SecondWindow *ui;
     CardData cartao;
     int ledInput;
     AlunoApp aluno;

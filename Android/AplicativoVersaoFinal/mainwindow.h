@@ -37,8 +37,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     SecondWindow *loggedWindow;
-    //UNCOMMENT
-    //SocketTcpRU socket;
+    SocketTcpRU socket;
     QString senhaDigitada;
     ulong matriculaDigitada;
 };

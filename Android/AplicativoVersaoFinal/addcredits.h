@@ -17,11 +17,12 @@ class AddCredits : public QDialog
     Q_OBJECT
 
 public:
-    explicit AddCredits(QWidget *parent = 0);
+    explicit AddCredits(QWidget *parent = 0, int matriculaAux = 0);
     ~AddCredits();
     void setAmount(float amountAux);
     void setIsCard(bool aux);
     void setCartao (CardData aux);
+    void setMatricula(int);
 
     float getAmount(void);
     CardData getCartao(void);
@@ -38,6 +39,7 @@ private slots:
     void on_lineAmount_returnPressed();
 
 private:
+    int matricula;
     CardData cartao;
     bool isCard;
     float amount;

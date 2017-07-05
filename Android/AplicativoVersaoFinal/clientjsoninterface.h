@@ -14,6 +14,7 @@ class ClientJsonInterface
 
     QString flag_last_change;
     QString ErrorText;
+    int occupants;
 
     void JsonSaldoMobile(QJsonArray *JsonArray, QJsonObject JsonRequest);
     void JsonSaldoCard(QJsonArray *JsonArray, QJsonObject JsonRequest);
@@ -27,6 +28,7 @@ public:
     ClientJsonInterface();
 
     void JsonReceiver(QByteArray data);
+    int getOccupants();
     AlunoApp getAluno();
     QString getFlag();
     QString getErrorText();

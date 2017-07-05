@@ -2,8 +2,8 @@
 
 SocketTcpRU::SocketTcpRU()
 {
-    IPaddress = "192.168.25.6";
-    //IPaddress = "192.168.0.23";
+    //IPaddress = "192.168.43.167";
+    IPaddress = "192.168.137.109";
 }
 
 AlunoApp SocketTcpRU::SearchAluno(int matricula, QString *Error, bool &ErrorOccurs)
@@ -18,7 +18,7 @@ AlunoApp SocketTcpRU::SearchAluno(int matricula, QString *Error, bool &ErrorOccu
     socket->connectToHost(IPaddress, 1234);
 //    socket->connectToHost(IPAddress, 1234);
 
-    if (socket->waitForConnected(3000))
+    if (socket->waitForConnected(7000))
     {
         out << "Connected! Ready to Sent!" << endl;
 
