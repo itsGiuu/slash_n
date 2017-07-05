@@ -9,8 +9,8 @@ class entryList{
     public:
         int size;
         entryList();
-        int getHead();
-        void addEntry(int matr);
+        void getHead(int &matr, int &creditType);
+        void addEntry(int matr, int creditT);
 
 };
 

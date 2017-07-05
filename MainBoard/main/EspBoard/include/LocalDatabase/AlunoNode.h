@@ -3,18 +3,20 @@
 
 
 class AlunoNode {
-   private:
-    int credito;
-   public:
+  private:
+    float creditoCard, creditoMobile;
+  public:
     int ID;
     int height;
     AlunoNode *esquerda;
     AlunoNode *direita;
 
     AlunoNode();
-    AlunoNode(int matricula, int val);
-    int getCredito();
-    void setCredito(int novoCredito);
+    AlunoNode(int matricula, float val1, float val2);
+    float getCreditoCard();
+    float getCreditoMobile();
+    void setCreditoCard(float novoCredito1);
+    void setCreditoMobile(float novoCredito2);
     AlunoNode* nodoEsquerda();
     AlunoNode* nodoDireita();
     bool isLeaf();

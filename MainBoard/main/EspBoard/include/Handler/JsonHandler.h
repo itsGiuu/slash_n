@@ -12,8 +12,6 @@
 #include <SmingCore/SmingCore.h>
 #include <string>
 #include "Services/ArduinoJson/include/ArduinoJson.h"
-#include "LocalDatabase/ABB.cpp"
-#include "ListaEntrada/entryList.cpp"
 #include "Catraca/Catraca.cpp"
 
 
@@ -28,9 +26,9 @@ class JsonHandler{
 public:
 	JsonHandler();
 	void handleData(char* data, TcpClient& client);
+	void addTestDatabase();
 private:
-	entryList listaEntrada;
-	ABB arvore;
+	unsigned int lastUpdateTime;
 };
 
 
