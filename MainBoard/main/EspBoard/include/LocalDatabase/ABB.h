@@ -8,7 +8,7 @@ class ABB{
         AlunoNode* raiz ;
         void auxApagaABB (AlunoNode*);
         void auxImprimir(AlunoNode* nodo);
-        AlunoNode* auxInserirNodo(AlunoNode* node, int matricula, int credito);
+        AlunoNode* auxInserirNodo(AlunoNode* node, int matricula, float creditoC, float creditoM);
         AlunoNode* auxFindNodo(AlunoNode* node, int matricula);
         AlunoNode* rightRotate(AlunoNode* node);
         AlunoNode* leftRotate(AlunoNode* node);
@@ -20,7 +20,7 @@ class ABB{
         ABB ();
         ~ABB ();
         void apagaABB ();
-        void inserirNodo (int matricula, int credito);
+        void inserirNodo (int matricula, float creditoC, float creditoM);
         AlunoNode* findNodo(int matricula);
         bool estaVazia ();
         void imprimirABB ();

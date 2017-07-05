@@ -1,20 +1,28 @@
 #include "AlunoNode.h"
 
 
-AlunoNode::AlunoNode (int matricula, int val){
+AlunoNode::AlunoNode (int matricula, float val1, float val2){
     ID = matricula;
-    credito = val;
+    creditoCard = val1;
+    creditoMobile = val2;
     height = 1;
     esquerda = 0;
     direita = 0;
 }
 // retorna o valor armazenado no nodo
-int AlunoNode::getCredito (){
-    return credito;
+float AlunoNode::getCreditoCard (){
+    return creditoCard;
+}
+float AlunoNode::getCreditoMobile (){
+    return creditoMobile;
 }
 // altera o valor armazenado no nodo
-void AlunoNode::setCredito (int novoCredito){
-    credito = novoCredito;
+void AlunoNode::setCreditoCard (float novoCredito1){
+    creditoCard = novoCredito1;
+}
+
+void AlunoNode::setCreditoMobile (float novoCredito2){
+    creditoMobile = novoCredito2;
 }
 // retorna ponteiro para o filho esquerdo do nodo atual
 AlunoNode* AlunoNode::nodoEsquerda(){

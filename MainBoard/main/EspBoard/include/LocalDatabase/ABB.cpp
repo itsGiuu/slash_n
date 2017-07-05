@@ -14,27 +14,28 @@ ABB::~ABB(){
 
 
 
-AlunoNode* ABB::auxInserirNodo(AlunoNode* node, int matricula, int credito){
+AlunoNode* ABB::auxInserirNodo(AlunoNode* node, int matricula, float creditoC, float creditoM){
 	if(matricula == node->ID){
-		node->setCredito(credito);
+		node->setCreditoCard(creditoC);
+		node->setCreditoMobile(creditoM);
 	}
 	else if(matricula < node->ID){
         if(node->esquerda == 0){
-            AlunoNode* ptr = new AlunoNode(matricula,credito);
+            AlunoNode* ptr = new AlunoNode(matricula,creditoC, creditoM);
             node->esquerda = ptr;
         }
         else{
-            node->esquerda = auxInserirNodo(node->esquerda, matricula, credito);
+            node->esquerda = auxInserirNodo(node->esquerda, matricula, creditoC, creditoM);
 
         }
     }
     else if (matricula > node->ID){
         if(node->direita == 0){
-            AlunoNode* ptr = new AlunoNode(matricula,credito);
+            AlunoNode* ptr = new AlunoNode(matricula,creditoC, creditoM);
             node->direita = ptr;
         }
         else{
-            node->direita = auxInserirNodo(node->direita, matricula, credito);
+            node->direita = auxInserirNodo(node->direita, matricula, creditoC, creditoM);
         }
     }
 
@@ -77,20 +78,16 @@ AlunoNode* ABB::auxInserirNodo(AlunoNode* node, int matricula, int credito){
     return node;
 }
 
-void ABB::inserirNodo (int matricula, int credito){
+void ABB::inserirNodo (int matricula, float creditoC, float creditoM){
     AlunoNode* ptr = raiz;
     if(ptr ==0){
-        AlunoNode* nodoRaiz = new AlunoNode(matricula,credito);
+        AlunoNode* nodoRaiz = new AlunoNode(matricula,creditoC, creditoM);
         raiz = nodoRaiz;
     }
     else{
-        raiz = auxInserirNodo(raiz,matricula, credito);
+        raiz = auxInserirNodo(raiz,matricula, creditoC, creditoM);
     }
-    Serial.print("Inserido node: ");
-    Serial.println(matricula);
-
-
-
+    Serial.printf("%%%%%%%%%%%% Inserido node na ABB: Matricula: %d, CreditoC: %f, CreditoM: %f \n",matricula,creditoC, creditoM);
 }
 
 AlunoNode* ABB::auxFindNodo(AlunoNode* node, int matricula){
@@ -130,10 +127,7 @@ AlunoNode* ABB::findNodo(int matricula){
 
 
 void ABB::auxImprimir(AlunoNode* nodo){
-        Serial.print("Matricula/Credito: ");
-        Serial.print(nodo->ID);
-        Serial.print(" / ");
-        Serial.println(nodo->getCredito());
+        Serial.printf("Matricula: %d, Card: %f, Mobile: %f \n",nodo->ID,nodo->getCreditoCard(), nodo->getCreditoMobile());
 
         if(nodo->direita != 0){
             auxImprimir(nodo->direita);
@@ -145,6 +139,7 @@ void ABB::auxImprimir(AlunoNode* nodo){
 
 
 void ABB::imprimirABB(){
+	Serial.println("%%%%%%%%%%%% Imprimir arvore ABB: ");
     if(raiz != 0){
         auxImprimir(raiz);
     }

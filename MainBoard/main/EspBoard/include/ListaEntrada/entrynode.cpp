@@ -1,8 +1,9 @@
 #include "entryNode.h"
 
-entryNode::entryNode(int matr)
+entryNode::entryNode(int matr, int creditT)
 {
     matricula = matr;
+    creditType = creditT; // 0 -> cartao , 1 -> mobile
     nextNode = 0;
 
 }

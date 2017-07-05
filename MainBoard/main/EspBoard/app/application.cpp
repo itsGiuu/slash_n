@@ -1,14 +1,14 @@
 #include <user_config.h>
 #include <SmingCore/SmingCore.h>
-#include <SmingCore/Debug.h>
+//#include <SmingCore/Debug.h>
 
 #include "Handler/JsonHandler.cpp"
 
 //#include <SmingCore/Debug.h>
 
 #ifndef WIFI_SSID
-	#define WIFI_SSID "admin" // Put you SSID and Password here
-	#define WIFI_PWD ""
+	#define WIFI_SSID "roberto" // Put you SSID and Password here
+	#define WIFI_PWD "12345678"
 #endif
 
 IPAddress serverIP;
@@ -23,11 +23,12 @@ void tcpServerClientConnected (TcpClient* client)
 
 bool tcpServerClientReceive(TcpClient& client, char *data, int size)
 {
-	Serial.print("Application ClientReceive (DataCallback) (IP, port) :");
+	Serial.print("\n\n\n%%%%%%%%%%%% Application ClientReceive (DataCallback) (IP, port) :");
 	Serial.print(client.getRemoteIp().toString()); Serial.print("  ");
-	Serial.print(client.getRemotePort()); Serial.print("\n");
+	Serial.println(client.getRemotePort());
 	Serial.print(" data :");
-	Serial.print(data); Serial.print("\n");
+	Serial.print(data);
+	Serial.print("\n");
 
 	wifiHandler->handleData(data, client);
 
@@ -55,13 +56,16 @@ void startServers()
 	Serial.println("\r\n=== TCP SERVER Port 8025 STARTED ===");
 	Serial.println(WifiStation.getIP());
 	Serial.println("==============================\r\n");
+
+	wifiHandler = new JsonHandler;
+	wifiHandler->addTestDatabase();
 }
 
 
 
 void connectOk()
 {
-	Serial.print("CONNECTED \n");
+	Serial.print("CONNECTED");
 	startServers();
 }
 
@@ -77,14 +81,13 @@ void init()
 {
 	delayMilliseconds(3000);
 	Serial.begin(SERIAL_BAUD_RATE); // 115200 by default
-	Serial.commandProcessing(false);
 
-
-	Serial.systemDebugOutput(true);
+	//Serial.commandProcessing(false);
+	//Serial.systemDebugOutput(false);
 	system_set_os_print(0);
-	Debug.setDebug(Serial);
-	Debug.initCommand();
-	Debug.start();
+	//Debug.setDebug(Serial);
+	//Debug.initCommand();
+	//Debug.start();
 
 	WifiStation.enable(true);
 	WifiStation.config(WIFI_SSID, WIFI_PWD);
@@ -93,7 +96,6 @@ void init()
 	WifiStation.waitConnection(connectOk, 30, connectFail);
 
 
-	wifiHandler = new JsonHandler;
 
 }
 

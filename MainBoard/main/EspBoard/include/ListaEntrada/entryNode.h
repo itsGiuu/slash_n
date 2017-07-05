@@ -9,7 +9,8 @@ private:
     entryNode* nextNode;
 public:
     int matricula;
-    entryNode(int matr);
+    int creditType;
+    entryNode(int matr, int creditT);
     entryNode* getNext();
     void setNext(entryNode* next);
 };
